@@ -3,9 +3,9 @@ import numpy as np
 import os
 
 
-def read_csv_to_df(filename):
+def read_csv_to_df(filename, delimiter=','):
     '''Read a csv to a pandas dataframe'''
-    return pd.read_csv(filename)
+    return pd.read_csv(filename, delimiter)
 
 
 def write_df_to_csv(df, directory, filename):
