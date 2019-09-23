@@ -1,8 +1,6 @@
 # feup-ecac
 Project developed for 'Knowledge Extraction and Machine Learning', a fifth year subject @FEUP. Made in collaboration with @cyrilico.
 
----
-
 ## Usage
 
 For running the desired __jupyter notebooks__, one must first run the following commands in a terminal containing `python3`:
@@ -39,4 +37,8 @@ classifier = create_DT()
 
 After running, you should expect your predictions in the file you indicated in the desired format.
 
----
+# Submission history
+
+| __Score__ | __Date__ | __Improvement to previous submission__ |
+|:-:|:-:|:-:|
+| __0.59259__ | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
