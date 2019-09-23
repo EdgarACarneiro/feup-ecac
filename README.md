@@ -42,3 +42,4 @@ After running, you should expect your predictions in the file you indicated in t
 | __Score__ | __Date__ | __Improvement to previous submission__ |
 |:-:|:-:|:-:|
 | __0.59259__ | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
+| __0.61049__ | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
