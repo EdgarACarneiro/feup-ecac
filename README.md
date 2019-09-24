@@ -43,3 +43,5 @@ After running, you should expect your predictions in the file you indicated in t
 |:-:|:-:|:-:|
 | __0.59259__ | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
 | __0.61049__ | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
+| __0.56543__ | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
+| __0.62839__ | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
