@@ -37,7 +37,7 @@ classifier = create_DT()
 
 After running, you should expect your predictions in the file you indicated in the desired format.
 
-# Submission history
+## Submission history
 
 | __Score__ | __Date__ | __Improvement to previous submission__ |
 |:-:|:-:|:-:|
@@ -46,3 +46,9 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.56543__ | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
 | __0.62839__ | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
 | __0.50000__ | 5.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
+
+
+## Useful links
+* [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
+* [How to Handle Imbalanced Data in Classification Problems](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f)
+* [Finding Correlation Between Many Variables (Multidimensional Dataset) with Python](https://medium.com/@sebastiannorena/finding-correlation-between-many-variables-multidimensional-dataset-with-python-5deb3f39ffb3)
