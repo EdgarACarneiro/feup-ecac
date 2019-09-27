@@ -48,6 +48,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.50000__ | 25.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
 | __0.62839__ | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
 | __0.59259__ | 26.09.2019 | Removed _loan\_id_ feature |
+| __0.57716__ | 27.09.2019 | Fixed merge of tables in previous submission |
 
 
 ## Useful links
