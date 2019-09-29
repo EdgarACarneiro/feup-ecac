@@ -49,9 +49,11 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.62839__ | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
 | __0.59259__ | 26.09.2019 | Removed _loan\_id_ feature |
 | __0.57716__ | 27.09.2019 | Fixed merge of tables in previous submission |
-
+| __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize | 
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
 * [How to Handle Imbalanced Data in Classification Problems](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f)
 * [Finding Correlation Between Many Variables (Multidimensional Dataset) with Python](https://medium.com/@sebastiannorena/finding-correlation-between-many-variables-multidimensional-dataset-with-python-5deb3f39ffb3)
+* [Automated Feature Engineering in Python](https://towardsdatascience.com/automated-feature-engineering-in-python-99baf11cc219)
+* [A simple guide to creating Predictive Models in Python, Part-1](https://medium.com/datadriveninvestor/a-simple-guide-to-creating-predictive-models-in-python-part-1-8e3ddc3d7008)
