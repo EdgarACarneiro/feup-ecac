@@ -49,7 +49,8 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.62839__ | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
 | __0.59259__ | 26.09.2019 | Removed _loan\_id_ feature |
 | __0.57716__ | 27.09.2019 | Fixed merge of tables in previous submission |
-| __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize | 
+| __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
+| __0.81728__ | 29.09.2019 | Added demographic table |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
