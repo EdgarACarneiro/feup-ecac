@@ -59,3 +59,4 @@ After running, you should expect your predictions in the file you indicated in t
 * [Finding Correlation Between Many Variables (Multidimensional Dataset) with Python](https://medium.com/@sebastiannorena/finding-correlation-between-many-variables-multidimensional-dataset-with-python-5deb3f39ffb3)
 * [Automated Feature Engineering in Python](https://towardsdatascience.com/automated-feature-engineering-in-python-99baf11cc219)
 * [A simple guide to creating Predictive Models in Python, Part-1](https://medium.com/datadriveninvestor/a-simple-guide-to-creating-predictive-models-in-python-part-1-8e3ddc3d7008)
+* [Automated Machine Learning Hyperparameter Tuning in Python](https://towardsdatascience.com/automated-machine-learning-hyperparameter-tuning-in-python-dfda59b72f8a)
