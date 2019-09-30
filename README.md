@@ -51,6 +51,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.57716__ | 27.09.2019 | Fixed merge of tables in previous submission |
 | __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
 | __0.81728__ | 29.09.2019 | Added demographic table |
+| __0.84135__ | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
