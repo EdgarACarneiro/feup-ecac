@@ -52,7 +52,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
 | __0.81728__ | 29.09.2019 | Added demographic table |
 | __0.84135__ | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
-
+| __0.88148__ | 01.10.2019 | Experimented with grid search hyper parameter running |
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
 * [How to Handle Imbalanced Data in Classification Problems](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f)
@@ -60,3 +60,5 @@ After running, you should expect your predictions in the file you indicated in t
 * [Automated Feature Engineering in Python](https://towardsdatascience.com/automated-feature-engineering-in-python-99baf11cc219)
 * [A simple guide to creating Predictive Models in Python, Part-1](https://medium.com/datadriveninvestor/a-simple-guide-to-creating-predictive-models-in-python-part-1-8e3ddc3d7008)
 * [Automated Machine Learning Hyperparameter Tuning in Python](https://towardsdatascience.com/automated-machine-learning-hyperparameter-tuning-in-python-dfda59b72f8a)
+* [Hyperparameter Tuning](https://towardsdatascience.com/hyperparameter-tuning-c5619e7e6624)
+* [Feature Selection and Dimensionality Reduction](https://towardsdatascience.com/feature-selection-and-dimensionality-reduction-f488d1a035de)
