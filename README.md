@@ -53,6 +53,8 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.81728__ | 29.09.2019 | Added demographic table |
 | __0.84135__ | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
 | __0.88148__ | 01.10.2019 | Experimented with grid search hyper parameter running |
+| __0.85925__ | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
+
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
 * [How to Handle Imbalanced Data in Classification Problems](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f)
@@ -62,3 +64,4 @@ After running, you should expect your predictions in the file you indicated in t
 * [Automated Machine Learning Hyperparameter Tuning in Python](https://towardsdatascience.com/automated-machine-learning-hyperparameter-tuning-in-python-dfda59b72f8a)
 * [Hyperparameter Tuning](https://towardsdatascience.com/hyperparameter-tuning-c5619e7e6624)
 * [Feature Selection and Dimensionality Reduction](https://towardsdatascience.com/feature-selection-and-dimensionality-reduction-f488d1a035de)
+* [Hyperparameter Tuning the Random Forest in Python](https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74)
