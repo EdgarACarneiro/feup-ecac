@@ -39,22 +39,23 @@ After running, you should expect your predictions in the file you indicated in t
 
 ## Submission history
 
-| __Score__ | __Date__ | __Improvement to previous submission__ |
+| __Score__ |  __Local Score__ | __Date__ | __Improvement to previous submission__ |
 |:-:|:-:|:-:|
-| __0.59259__ | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
-| __0.61049__ | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
-| __0.56543__ | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
-| __0.62839__ | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
-| __0.50000__ | 25.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
-| __0.62839__ | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
-| __0.59259__ | 26.09.2019 | Removed _loan\_id_ feature |
-| __0.57716__ | 27.09.2019 | Fixed merge of tables in previous submission |
-| __0.75370__ | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
-| __0.81728__ | 29.09.2019 | Added demographic table |
-| __0.84135__ | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
-| __0.88148__ | 01.10.2019 | Experimented with grid search hyper parameter running |
-| __0.85925__ | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
-| __0.64197__ | 04.10.2019 | Implemented PCA |
+| __0.59259__ | Not recorded | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
+| __0.61049__ | Not recorded | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
+| __0.56543__ | Not recorded | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
+| __0.62839__ | Not recorded | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
+| __0.50000__ | Not recorded | 25.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
+| __0.62839__ | Not recorded | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
+| __0.59259__ | Not recorded | 26.09.2019 | Removed _loan\_id_ feature |
+| __0.57716__ | Not recorded | 27.09.2019 | Fixed merge of tables in previous submission |
+| __0.75370__ | Not recorded | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
+| __0.81728__ | Not recorded | 29.09.2019 | Added demographic table |
+| __0.84135__ | Not recorded | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
+| __0.88148__ | Not recorded | 01.10.2019 | Experimented with grid search hyper parameter running |
+| __0.85925__ | Not recorded | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
+| __0.64197__ | Not recorded | 04.10.2019 | Implemented PCA |
+| __0.83580__ | 0.781 | 04.10.2019 | Increased local score using feature selection |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
