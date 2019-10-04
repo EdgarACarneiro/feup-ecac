@@ -54,6 +54,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.84135__ | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
 | __0.88148__ | 01.10.2019 | Experimented with grid search hyper parameter running |
 | __0.85925__ | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
+| __0.64197__ | 04.10.2019 | Implemented PCA |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
@@ -65,3 +66,4 @@ After running, you should expect your predictions in the file you indicated in t
 * [Hyperparameter Tuning](https://towardsdatascience.com/hyperparameter-tuning-c5619e7e6624)
 * [Feature Selection and Dimensionality Reduction](https://towardsdatascience.com/feature-selection-and-dimensionality-reduction-f488d1a035de)
 * [Hyperparameter Tuning the Random Forest in Python](https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74)
+* [Understanding PCA (Principal Component Analysis) with Python](https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21)
