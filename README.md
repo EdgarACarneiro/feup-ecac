@@ -40,7 +40,7 @@ After running, you should expect your predictions in the file you indicated in t
 ## Submission history
 
 | __Score__ |  __Local Score__ | __Date__ | __Improvement to previous submission__ |
-|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|
 | __0.59259__ | Not recorded | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
 | __0.61049__ | Not recorded | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
 | __0.56543__ | Not recorded | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
@@ -55,7 +55,8 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.88148__ | Not recorded | 01.10.2019 | Experimented with grid search hyper parameter running |
 | __0.85925__ | Not recorded | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
 | __0.64197__ | Not recorded | 04.10.2019 | Implemented PCA |
-| __0.83580__ | 0.781 | 04.10.2019 | Increased local score using feature selection |
+| __0.83580__ | __0.781__ | 04.10.2019 | Increased local score using feature selection |
+| __0.89259__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
