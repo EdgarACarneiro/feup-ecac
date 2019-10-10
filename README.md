@@ -57,6 +57,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.64197__ | Not recorded | 04.10.2019 | Implemented PCA |
 | __0.83580__ | __0.781__ | 04.10.2019 | Increased local score using feature selection |
 | __0.89259__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
+| __0.85617__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
@@ -69,3 +70,4 @@ After running, you should expect your predictions in the file you indicated in t
 * [Feature Selection and Dimensionality Reduction](https://towardsdatascience.com/feature-selection-and-dimensionality-reduction-f488d1a035de)
 * [Hyperparameter Tuning the Random Forest in Python](https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74)
 * [Understanding PCA (Principal Component Analysis) with Python](https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21)
+* [Loan Default Prediction and Identification of Interesting Relations between Attributes of Peer-to-Peer Loan Applications](https://www.researchgate.net/publication/322603744_Loan_Default_Prediction_and_Identification_of_Interesting_Relations_between_Attributes_of_Peer-to-Peer_Loan_Applications)
