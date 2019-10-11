@@ -58,6 +58,9 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.83580__ | __0.781__ | 04.10.2019 | Increased local score using feature selection |
 | __0.89259__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
 | __0.85617__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
+| __0.82839__ | __0.862035__ | 10.10.2019 | Experimented with under sampling |
+| __0.79444__ | __0.840876__ | 10.10.2019 | Added bank demographic data |
+| __0.90123__ | __0.842036__ | 10.10.2019 | Heavy feature engineering. Consistent results locally. |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
