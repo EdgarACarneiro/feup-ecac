@@ -63,6 +63,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.90123__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
 | __0.88333__ | __0.852039__ | 11.10.2019 | Small improvement locally using feature selection and feature engineering. |
 | __0.72530__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
+| __0.770197__ | ____ | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
 
 ## Useful links
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
