@@ -5,3 +5,5 @@
 project-competition/dataset
 __pycache__*
 env
+
+project-competition/images/*
