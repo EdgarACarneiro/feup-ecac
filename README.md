@@ -67,6 +67,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.85000__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
 
 ## Useful links
+* [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
 * [Principal Component Analysis in 6 steps](https://coolstatsblog.com/2015/03/21/principal-component-analysis-explained/)
 * [How to Handle Imbalanced Data in Classification Problems](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f)
 * [Finding Correlation Between Many Variables (Multidimensional Dataset) with Python](https://medium.com/@sebastiannorena/finding-correlation-between-many-variables-multidimensional-dataset-with-python-5deb3f39ffb3)
