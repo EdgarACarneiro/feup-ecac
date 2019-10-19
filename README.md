@@ -55,7 +55,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.88148__ | Not recorded | 01.10.2019 | Experimented with grid search hyper parameter running |
 | __0.85925__ | Not recorded | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
 | __0.64197__ | Not recorded | 04.10.2019 | Implemented PCA |
-| __0.83580__ | __0.781__ | 04.10.2019 | Increased local score using feature selection |
+| __0.83580__ | __0.781090__ | 04.10.2019 | Increased local score using feature selection |
 | __0.89259__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
 | __0.85617__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
 | __0.82839__ | __0.862035__ | 10.10.2019 | Experimented with under sampling |
@@ -63,9 +63,10 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.90123__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
 | __0.88333__ | __0.852039__ | 11.10.2019 | Small improvement locally using feature selection and feature engineering. |
 | __0.72530__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
-| __0.770197__ | ____ | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
+| __0.770197__ | Not recorded | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
 | __0.85000__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
 | __0.79753__ | __0.828777__ | 18.10.2019 | Very consistent results. S'more feature engineering and selection. |
+| __0.77160__ | __0.799563__ | 19.10.2019 | Decision Tree of depth 2. Constant AUC of 80%, probably small error interval. |
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
