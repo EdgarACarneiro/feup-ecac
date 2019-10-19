@@ -65,6 +65,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.72530__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
 | __0.770197__ | ____ | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
 | __0.85000__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
+| __0.79753__ | __0.828777__ | 18.10.2019 | Very consistent results. S'more feature engineering and selection. |
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
