@@ -67,6 +67,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.85000__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
 | __0.79753__ | __0.828777__ | 18.10.2019 | Very consistent results. S'more feature engineering and selection. |
 | __0.77160__ | __0.799563__ | 19.10.2019 | Decision Tree of depth 2. Constant AUC of 80%, probably small error interval. |
+| __0.78353__ | 0.937524 | 21.10.2019 | Applied backward elimination. Using LinearRegression. Constant local score. |
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
@@ -82,3 +83,4 @@ After running, you should expect your predictions in the file you indicated in t
 * [Understanding PCA (Principal Component Analysis) with Python](https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21)
 * [Loan Default Prediction and Identification of Interesting Relations between Attributes of Peer-to-Peer Loan Applications](https://www.researchgate.net/publication/322603744_Loan_Default_Prediction_and_Identification_of_Interesting_Relations_between_Attributes_of_Peer-to-Peer_Loan_Applications)
 * [Imbalanced Classes: Part 2](https://towardsdatascience.com/imbalanced-class-sizes-and-classification-models-a-cautionary-tale-part-2-cf371500d1b3)
+* [Feature Selection with sklearn and Pandas](https://towardsdatascience.com/feature-selection-with-pandas-e3690ad8504b)
