@@ -69,6 +69,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.77160__ | __0.799563__ | 19.10.2019 | Decision Tree of depth 2. Constant AUC of 80%, probably small error interval. |
 | __0.78353__ | __0.937524__ | 21.10.2019 | Applied backward elimination. Using LinearRegression. Constant local score. |
 | __0.70432__ | __0.860821__ | 21.10.2019 | Feature selection using backward elimination and RFE on LogisticRegression |
+| __0.71913__ | __0.845__ | Using most consistent local with SMOTETek sampling and Gradient Boosting. |
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
