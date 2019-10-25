@@ -71,6 +71,8 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.70432__ | __0.860821__ | 21.10.2019 | Feature selection using backward elimination and RFE on LogisticRegression |
 | __0.71913__ | __0.845231__ | 24.10.2019 |  Using most consistent local with SMOTETek sampling and Gradient Boosting. |
 | __0.85864__ | __0.867982__| 24.10.2019 | Best local scoring setup. |
+| __0.83209__ | __0.864521__ | 25.10.2019 | Random Forest with SMOTETEEN and Filter Method as feature selection. Locally consistent. |
+| __0.74074__ | __0.850971__ | 25.10.2019 | Best local Decision Tree, with SMOTETEEN and Filter Method as feature selection. Likely to overfit. | 
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
