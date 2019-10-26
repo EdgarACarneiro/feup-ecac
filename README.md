@@ -37,9 +37,15 @@ classifier = create_DT()
 
 After running, you should expect your predictions in the file you indicated in the desired format.
 
+## Final submission
+
+Final presentation slides available [here]().
+
+Final leaderboards available [here](https://www.kaggle.com/c/to-loan-or-not-to-loan-4/leaderboard) - placed :nine: .
+
 ## Submission history
 
-:large_orange_diamond: - Submissions selected for competition scoring. Notice that we did not have access to the private score when choosing the two submissions.
+* :heavy_exclamation_mark: : Submissions selected for competition scoring. Notice that we did not have access to the private score when choosing the two submissions.
 
 | __Public Score__ | __Private Score__ | __Local Score__ | __Date__ | __Improvement to previous submission__ |
 |:-:|:-:|:-:|:-:|:-|
@@ -62,7 +68,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.85617__ | __0.73765__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
 | __0.82839__ | __0.72530__ | __0.862035__ | 10.10.2019 | Experimented with under sampling |
 | __0.79444__ | __0.64012__ | __0.840876__ | 10.10.2019 | Added bank demographic data |
-| :large_orange_diamond: __0.90123__ | __0.79506__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
+| :heavy_exclamation_mark: __0.90123__ | __0.79506__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
 | __0.88333__ | __0.81666__ | __0.852039__ | 11.10.2019 | Small improvement locally using feature selection and feature engineering. |
 | __0.72530__ | __0.71913__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
 | __0.77020__ | __0.73333__ | Not recorded | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
@@ -72,7 +78,7 @@ After running, you should expect your predictions in the file you indicated in t
 | __0.78353__ | __0.68353__ | __0.937524__ | 21.10.2019 | Applied backward elimination. Using LinearRegression. Constant local score. |
 | __0.70432__ | __0.58271__ | __0.860821__ | 21.10.2019 | Feature selection using backward elimination and RFE on LogisticRegression |
 | __0.71913__ | __0.83395__ | __0.845231__ | 24.10.2019 |  Using most consistent local with SMOTETek sampling and Gradient Boosting. |
-| :large_orange_diamond: __0.85864__ | __0.74012__ | __0.867982__| 24.10.2019 | Best local scoring setup. |
+| :heavy_exclamation_mark: __0.85864__ | __0.74012__ | __0.867982__| 24.10.2019 | Best local scoring setup. |
 | __0.83209__ | __0.78641__ | __0.864521__ | 25.10.2019 | Random Forest with SMOTETEEN and Filter Method as feature selection. Locally consistent. |
 | __0.74074__ | __0.79506__ | __0.850971__ | 25.10.2019 | Best local Decision Tree, with SMOTETEEN and Filter Method as feature selection. Likely to overfit. | 
 
