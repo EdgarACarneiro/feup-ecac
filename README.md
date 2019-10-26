@@ -39,40 +39,42 @@ After running, you should expect your predictions in the file you indicated in t
 
 ## Submission history
 
-| __Score__ |  __Local Score__ | __Date__ | __Improvement to previous submission__ |
-|:-:|:-:|:-:|:-:|
-| __0.59259__ | Not recorded | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
-| __0.61049__ | Not recorded | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
-| __0.56543__ | Not recorded | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
-| __0.62839__ | Not recorded | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
-| __0.50000__ | Not recorded | 25.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
-| __0.62839__ | Not recorded | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
-| __0.59259__ | Not recorded | 26.09.2019 | Removed _loan\_id_ feature |
-| __0.57716__ | Not recorded | 27.09.2019 | Fixed merge of tables in previous submission |
-| __0.75370__ | Not recorded | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
-| __0.81728__ | Not recorded | 29.09.2019 | Added demographic table |
-| __0.84135__ | Not recorded | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
-| __0.88148__ | Not recorded | 01.10.2019 | Experimented with grid search hyper parameter running |
-| __0.85925__ | Not recorded | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
-| __0.64197__ | Not recorded | 04.10.2019 | Implemented PCA |
-| __0.83580__ | __0.781090__ | 04.10.2019 | Increased local score using feature selection |
-| __0.89259__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
-| __0.85617__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
-| __0.82839__ | __0.862035__ | 10.10.2019 | Experimented with under sampling |
-| __0.79444__ | __0.840876__ | 10.10.2019 | Added bank demographic data |
-| __0.90123__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
-| __0.88333__ | __0.852039__ | 11.10.2019 | Small improvement locally using feature selection and feature engineering. |
-| __0.72530__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
-| __0.770197__ | Not recorded | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
-| __0.85000__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
-| __0.79753__ | __0.828777__ | 18.10.2019 | Very consistent results. S'more feature engineering and selection. |
-| __0.77160__ | __0.799563__ | 19.10.2019 | Decision Tree of depth 2. Constant AUC of 80%, probably small error interval. |
-| __0.78353__ | __0.937524__ | 21.10.2019 | Applied backward elimination. Using LinearRegression. Constant local score. |
-| __0.70432__ | __0.860821__ | 21.10.2019 | Feature selection using backward elimination and RFE on LogisticRegression |
-| __0.71913__ | __0.845231__ | 24.10.2019 |  Using most consistent local with SMOTETek sampling and Gradient Boosting. |
-| __0.85864__ | __0.867982__| 24.10.2019 | Best local scoring setup. |
-| __0.83209__ | __0.864521__ | 25.10.2019 | Random Forest with SMOTETEEN and Filter Method as feature selection. Locally consistent. |
-| __0.74074__ | __0.850971__ | 25.10.2019 | Best local Decision Tree, with SMOTETEEN and Filter Method as feature selection. Likely to overfit. | 
+:large_orange_diamond: - Submissions selected for competition scoring. Notice that we did not have access to the private score when choosing the two submissions.
+
+| __Public Score__ | __Private Score__ | __Local Score__ | __Date__ | __Improvement to previous submission__ |
+|:-:|:-:|:-:|:-:|:-|
+| __0.59259__ | __0.57160__ | Not recorded | 23.09.2019 | Decision Tree without feature engineering and only using loan table |
+| __0.61049__ | __0.59876__ | Not recorded | 23.09.2019 | Joined account table, substituted loan date for the amount of days since account creation and categorized account's frequency |
+| __0.56543__ | __0.61728__ | Not recorded | 24.09.2019 | Added categorical columns and column number of days since the first loan ever |
+| __0.62839__ | __0.65864__ | Not recorded | 24.09.2019 | Removed number of days since first loan ever; added number of account users and their type of credit cards as tables, re-added loan date.
+| __0.50000__ | __0.50000__ | Not recorded | 25.09.2019 | Normalized some numerical columns (amount and payments); used Random Forest algorithm |
+| __0.62839__ | __0.58888__ | Not recorded | 26.09.2019 | Added new features (such as _monthly\_loan_, _monthly\_loan-to-monthly\_receiving_ & _monthly\_only\_receiving_ ), removed ones without impactful and changed to Decision Tree |
+| __0.59259__ | __0.63209__ | Not recorded | 26.09.2019 | Removed _loan\_id_ feature |
+| __0.57716__ | __0.60802__ | Not recorded | 27.09.2019 | Fixed merge of tables in previous submission |
+| __0.75370__ | __0.75308__ | Not recorded | 29.09.2019 | Added transactions table and reworked the flow of the entire project, making it way easier to customize |
+| __0.81728__ | __0.75679__ | Not recorded | 29.09.2019 | Added demographic table |
+| __0.84135__ | __0.77716__ | Not recorded | 30.09.2019 | Removed redundant features, changed join on district_id of account to district_id of client |
+| __0.88148__ | __0.68148__ | Not recorded | 01.10.2019 | Experimented with grid search hyper parameter running |
+| __0.85925__ | __0.73518__ | Not recorded | 03.10.2019 | Changed Classifying model, after grid searching Decision Tree as it had better performance |
+| __0.64197__ | __0.59876__ | Not recorded | 04.10.2019 | Implemented PCA |
+| __0.83580__ | __0.80555__ | __0.781090__ | 04.10.2019 | Increased local score using feature selection |
+| __0.89259__ | __0.75555__ | __0.832430__ | 04.10.2019 | Added class weighting to _RandomForest_ and _GradientBoosting_ |
+| __0.85617__ | __0.73765__ | __0.848035__ | 09.10.2019 | Now considering households and pensions. Fixed numerical imputation not working correctly. |
+| __0.82839__ | __0.72530__ | __0.862035__ | 10.10.2019 | Experimented with under sampling |
+| __0.79444__ | __0.64012__ | __0.840876__ | 10.10.2019 | Added bank demographic data |
+| :large_orange_diamond: __0.90123__ | __0.79506__ | __0.842036__ | 11.10.2019 | Heavy feature engineering. Consistent results locally. |
+| __0.88333__ | __0.81666__ | __0.852039__ | 11.10.2019 | Small improvement locally using feature selection and feature engineering. |
+| __0.72530__ | __0.71913__ | __0.841861__ | 12.10.2019 | Heavy feature selection. Removing features without correlation to loan status. |
+| __0.77020__ | __0.73333__ | Not recorded | 15.10.2019 | Hardcore feature selection. Using only 7 features. |
+| __0.85000__ | __0.81049__ | __0.824199__ | 17.10.2019 | Fixed some local bugs. Heavy feature selection, both automatic and manual. |
+| __0.79753__ | __0.68827__ | __0.828777__ | 18.10.2019 | Very consistent results. S'more feature engineering and selection. |
+| __0.77160__ | __0.75617__ | __0.799563__ | 19.10.2019 | Decision Tree of depth 2. Constant AUC of 80%, probably small error interval. |
+| __0.78353__ | __0.68353__ | __0.937524__ | 21.10.2019 | Applied backward elimination. Using LinearRegression. Constant local score. |
+| __0.70432__ | __0.58271__ | __0.860821__ | 21.10.2019 | Feature selection using backward elimination and RFE on LogisticRegression |
+| __0.71913__ | __0.83395__ | __0.845231__ | 24.10.2019 |  Using most consistent local with SMOTETek sampling and Gradient Boosting. |
+| :large_orange_diamond: __0.85864__ | __0.74012__ | __0.867982__| 24.10.2019 | Best local scoring setup. |
+| __0.83209__ | __0.78641__ | __0.864521__ | 25.10.2019 | Random Forest with SMOTETEEN and Filter Method as feature selection. Locally consistent. |
+| __0.74074__ | __0.79506__ | __0.850971__ | 25.10.2019 | Best local Decision Tree, with SMOTETEEN and Filter Method as feature selection. Likely to overfit. | 
 
 ## Useful links
 * [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
