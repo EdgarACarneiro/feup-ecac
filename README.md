@@ -39,7 +39,7 @@ After running, you should expect your predictions in the file you indicated in t
 
 ## Final submission
 
-Final presentation slides available [here]().
+Final presentation slides available [here](https://github.com/EdgarACarneiro/feup-ecac/blob/master/docs/ECAC%20Presentation%20-%20T1%20G10.pdf).
 
 Final leaderboards available [here](https://www.kaggle.com/c/to-loan-or-not-to-loan-4/leaderboard) - placed :nine: .
 
