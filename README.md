@@ -1,5 +1,7 @@
 # feup-ecac
-Project developed for 'Knowledge Extraction and Machine Learning', a fifth year subject @FEUP. Made in collaboration with @cyrilico.
+Project developed for 'Knowledge Extraction and Machine Learning', a fifth year subject @FEUP. Made in collaboration with [@cyrilico](https://github.com/cyrilico).
+
+A Summary of the theoertical material is available [here](https://github.com/EdgarACarneiro/feup-ecac/Summary.md). 
 
 ## Usage
 
