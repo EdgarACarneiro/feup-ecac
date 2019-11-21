@@ -1,5 +1,7 @@
 # Summary of ECAC's theoretical material
 
+---
+
 ## Clustering
 
 ### Difference between values of common attribute types
@@ -68,7 +70,7 @@ Main type of clusters:
     * A cluster is a region with high density of objects surrounded by a region of low density
 
 
-#### __K-means__
+### __K-means__
 * Most popular
 * Creates clusters that can be both partitional or prototype-based
     * __Centroid (prototype-based)__: A prototype or profile of all the objects in a cluster, for example the average of all the objects in the cluster
@@ -86,7 +88,7 @@ Main type of clusters:
     * Can find only convex shaped clusters
 * Find optimal number of clusters -> Within-groups sum of squares technique -> Elbow curve -> optimal _K_ is a the elbow (see slides for more info)
 
-#### __DBSCAN__
+### __DBSCAN__
 * Creates clusters that are partitional and density-based
 * Good to find non-convex (one or more of the interior angles of the shape is > 180º) clusters
 * Automatically defines the number of clusters
@@ -109,7 +111,7 @@ Main type of clusters:
 * _K-means_ VS _DBSCAN_ output example:
 ![Comparison](https://i.imgur.com/jqzzyJI.png)
 
-#### __Agglomerative hierarchical clustering__
+### __Agglomerative hierarchical clustering__
 * Easy-to-understand and interpret
 * Creates graph-based clusters, namely dendograms
 * More information, see [here](https://www.datanovia.com/en/lessons/agglomerative-hierarchical-clustering/)
@@ -127,7 +129,7 @@ Main type of clusters:
     * Interpretation of dendrograms can be, in several domains, quite subjective
     * Gets often stuck into local optima
 
-####  Evaluation of clusters
+###  Evaluation of clusters
 * __Silhouette__
     * Evaluates compactness inside clusters
     * Computed for each object x, can return a value:
@@ -142,7 +144,191 @@ Main type of clusters:
     * Can be used if objects have labels
     * Measures how well the clusters separate objects regarding their labels
 
-#### Important Notes
+### Final Remarks
 * Various methods and even various runs of the same method might return different results
     * _e.g_ initial centroid positions on the _K-means_ algorithm
 * Noisy data is harder to process and can reduce the quality of the found solutions
+
+---
+
+## Frequent Pattern Mining
+
+Nice additional slides on this topic from NANJING University [here](https://cs.nju.edu.cn/zlj/Course/DM_16_Lecture/Lecture_4.pdf).
+
+### Transaction data
+Consider the following Transactional data
+| TID | Arabic | Indian | Mediterranean | Oriental | Fast Food |
+|:-|:-:|:-:|:-:|:-:|:-:|
+| Andrew | | X | X | | |
+| Bernhard | | X | | X | X |
+| Carolina | | X | X | X | |
+| Dennis | X | | X | | |
+| Eve | | | | X | |
+| Fred | | X | X | X | |
+| Gwyneth | X | | X | | |
+| Hayden | | X | | X | X |
+| Irene | | X | X | X | |
+| James | X | | X | | |
+
+### Itemsets and their support
+* __Itemset__
+    * An arbitrary combination of items
+    * The number of itemsets grows exponentially with the number of items (naturally)
+* __Support of an itemset__
+    * The frequency of an itemset in the data
+    * Computed as the ratio of transactions containing all items from the itemset to the number of all transactions
+        * _e.g_ Support of itemset _{Fast Food}_ is 2/10 = 0.2
+        * _e.g_ _Support({Indian, Oriental})_ (intersection) is 5/10 = 0.5
+
+### Frequent itemset mining
+* Given
+    * A set of all available items
+    * Transactional data
+    * And a minimum support threshold _min\_sup_
+* Goal
+    * Find itemsets generated from items that have _Support({I}) > min\_sup_
+    * Low _min\_sup_ -> large number of itemsets -> too specific
+    * High _min\_sup_ -> small number of itemsets -> too generic
+
+### Itemset lattice
+* Represents the search space
+![itemset lattice](https://i.imgur.com/Rpc1DRw.png)
+
+### Monotonicity
+* If an itemset is frequent then each of its subsets are frequent too
+    * _e.g_ _support({Indian, Mediterranean, Oriental})_ = 0.3; _support({Indian, Oriental})_ = 0.4;
+    * Make sense since we are "relaxing the restrictions"
+* If an itemset is infrequent then none of its supersets will be frequent
+    * Opposite of the previous rule
+    * Make sense since we are "adding more restrictions"
+
+### Apriori
+* Algorithm for frequent item set mining and association rule learning
+* Basic Idea: Use the downward closure property to prune the candidate search space
+* The frequent item sets determined by Apriori can be used to determine association rules which highlight general trends
+* Nice example presented [here](http://www2.cs.uregina.ca/~dbd/cs831/notes/itemsets/itemset_apriori.html)
+* Apriori pseudo-code:
+![Apriori algorithm](https://i.imgur.com/ItJeplO.png)
+
+### Enumeration tree
+* A node exists in the tree corresponding to each frequent itemset
+* The root of the tree corresponds to the null itemset
+* Let _I = {i1, ... ,1k}_ be a frequent itemset. The parent of the node _I_ is the itemset _{i1, ..., ik-1}_
+* Prunes the search space with the frequent itemsets (?)
+* Enumeration Tree pseudo-code:
+![ET algorithm](https://i.imgur.com/dceZbWj.png)
+* Enumeration Tree from the example:
+![ET example](https://i.imgur.com/uina5ai.png)
+
+### Eclat
+* Vertical data format
+    * Intersection of TID-sets for counting the support
+    * More efficient than reading each line from the transactional data
+![Eclat example](https://i.imgur.com/YrRCmNB.png)
+
+> For unknown reasons, the Fast Food Transactions were disconsidered from now on
+> Ask Damas to verify this
+
+### FP-Tree
+* Compact representation of transactional data in a tree structure
+    * Fast support count and itemset generation
+* Only two passes of data required
+    1. All frequent items and their support are found
+    2. Items in each transaction are processed in a decreasing order according to their support while infrequent items are not considered
+* Building an FP-Tree:
+![fp-tree build](https://i.imgur.com/bpkCjrG.png)
+
+### FP-Growth
+* Division of all frequent itemsets into non-overlapping subsets
+> TODO: Ask Damas help
+
+### Maximal and closed frequent itemsets
+* Maximal frequent itemset
+    * A frequent itemset is maximal if it is frequent and no superset of it is frequent.
+* Closed frequent itemset
+    * A frequent itemset is closed if it is frequent and no superset of it has the same support.
+
+### __Association rules__
+* Rule ___A => C___
+    * _A_ and _C_ are non-overlapping itemsets
+        * _A_ is the antecedent of the rule
+        * _C_ is the consequent of the rule
+    * __if-then implication__
+        * if the antecedent of the rule is present in some transactions then its consequent should also be present in these transactions
+        * in other words, itemsets _A_ and _C_ are associated in the data
+    * ___support(A => C) = support(A U C)___
+        * _e.g_ _support({Arabic} => {Mediterranean}) = support({Arabic, Mediterranean}) = 0.3 = support({Mediterranean, Arabic})_
+    * ___confidence((A => C))__ = support(A => C) / support(A)_
+        * Similar to conditional probability
+
+### Association rule mining
+* Given
+    * A set of all available  items
+    * Transactional data
+    * Minimum support threshold _min\_sup_
+    * Minimum confidence threshold _min\_conf_
+* Goal
+    * Find association rules generated whose
+        * support in the transactional data is at least _min\_sup_
+        * confidence in the transactional data is at least _min\_conf_
+* Two-phases process:
+    1. Mine frequent itemsets with respect to  _min\_sup_ threshold
+    2. Generate rules meeting the _min\_conf_ threshold from the found frequent itemsets
+* __Monotonicity__
+    * _confidence( X => Y - X) >= confidence(X' => Y - X')_
+        * With _X'_ being a subset of _X_
+        * Moving any item(s) from the antecedent to the consequent does not increase the confidence
+            * _e.g_
+            * _Y_ = {Indian, Mediterranean, Oriental}
+            * _X_ = {Indian, Oriental}
+            * _X'_ = {Indian}
+            * _Y - X_ = {Indian, Mediterranean, Oriental} - {Indian, Oriental} = {Mediterranean}
+            * _Y - X'_ = {Indian, Mediterranean, Oriental} - {Indian} = {Mediterranean, Oriental}
+            * _confidence(X => Y - X) = confidence({Indian, Oriental} - {Mediterranean}) = support({Indian, Oriental, Mediterranean}) / support({Indian, Oriental})_ = 0.3 / 0.5 = 0.6
+            * _confidence(X' => Y - X') = confidence({Indian} => {Mediterranean, Oriental}) = support({Indian, Mediterranean, Oriental}) / support({Indian})_ = 0.3 / 0.6 = 0.5
+
+### Mining rules from an itemset
+Mining rules pseudo-code and example:
+![mining rules pseudo-code example](https://i.imgur.com/UqXF9Iy.png)
+
+### Behind support confidence
+* Cross-support patterns
+    * ___support\_ratio(P)__ = min{s(i1), s(i2), ..., s(ik)} / max{s(i1), s(i2), ..., s(ik)}_
+        * _s(i1), s(i2), ..., s(ik)_ are the supports of the tiems _i1, i2, ..., ik_ contained in the pattern _P_
+        * _e.g_ _s(i1)_ = 0.9, _s(i2)_ = 0.1, _s(i3)_ = 0.25
+        * _support\_ratio({i1 i2})_ = _min{s(i1), s(i2)} / max{s(i1), s(i2)}_ = 0.1 / 0.9 = 0.11
+    * __Lift__
+        * statistical relationship between the antecedent and the consequent of the rule
+        * ___lift(X => Y)__ = confidence(X => Y) / support(Y)_
+        * Output
+            * _lift(X => Y) > 1_ indicates that the occurrence of _X_ has a positive effect on the occurrence of _Y_
+            * _lift(X => Y) < 1_ indicates that the occurrence of _X_ has a negative effect on the occurrence of _Y_
+            * _lift(X => Y) ~ 1_ indicates that the occurrence of _X_ has no effect on the occurrence of _Y_
+
+### Simpson's paradox
+* Correlations between pairs of itemsets (antecedents and consequents of rules) appearing in different groups of data __may disappear or be reversed when these groups are combined__
+    * The relationship observed between the antecedent and the subsequent of the rule can also be influenced by hidden factors that are not captured in the data or not considered in the analysis
+
+Example containing the previous notions exemplified:
+![previous slides example](https://i.imgur.com/tggKlGx.png)
+
+### Sequence patterns
+* __Event__
+    * An itemset pf arbitrary length
+* __Sequence__
+    * Sequence of events consecutively recorded in time
+* __Subsequence__
+    * _s1 = <X1, X2, ..., Xn>_ is a subsequence of _s2 = <Y1, Y2, ..., Ym>_ if there exists _1 <= i1 < i2 < ... < in <= m_ such that _X1_ is a subset of _Yi1_, _X2_ a substed of _Yi2_, ..., _Xn_ is a subset of _Yin_
+
+Sequence patterns example:
+![Sequence patterns example](https://i.imgur.com/bSfUhRA.png)
+
+### Final Remarks
+* Despite the runtime necessities, all patter mining approaches should return the same results
+Main obstacle is the large number of resulting patterns
+    * Choose _min\_sup_ and _min\_conf_ carefully
+    * Other evaluation measures beside support, confidence or lift
+    * Measures of “interestingness” of patterns for the users
+
+---
+
