@@ -156,7 +156,8 @@ Main type of clusters:
 Nice additional slides on this topic from NANJING University [here](https://cs.nju.edu.cn/zlj/Course/DM_16_Lecture/Lecture_4.pdf).
 
 ### Transaction data
-Consider the following Transactional data
+Consider the following Transactional data:
+
 | TID | Arabic | Indian | Mediterranean | Oriental | Fast Food |
 |:-|:-:|:-:|:-:|:-:|:-:|
 | Andrew | | X | X | | |
@@ -226,8 +227,7 @@ Consider the following Transactional data
     * More efficient than reading each line from the transactional data
 ![Eclat example](https://i.imgur.com/YrRCmNB.png)
 
-> For unknown reasons, the Fast Food Transactions were disconsidered from now on
-> Ask Damas to verify this
+> Fast Food Transactions were disconsidered since they do not respect the minimum support defined (_0.3_)
 
 ### FP-Tree
 * Compact representation of transactional data in a tree structure
@@ -332,3 +332,200 @@ Main obstacle is the large number of resulting patterns
 
 ---
 
+## Working with Texts
+
+### Text mining tasks
+* __Descriptive__
+    * Grouping of similar documents
+    * Looking for texts about similar issues and words that frequently appear together
+* __Predictive__
+    * Classification of documents into one or more topics
+    * Sentiment analysis and opinion mining
+* __Similar to data mining tasks__
+    * after transforming the texts into tabular, attribute-value format
+* Five phases:
+    1. Data acquisition
+        * Conversion of text into a sequence of characters
+        * Data cleaning of document related info
+    2. Feature extraction
+    3. Data pre-processing
+    4. Model induction
+    5. Evaluation and interpretation of results
+
+### Feature extraction
+1. __Tokenization__
+    * extract, for each text, a sequence of words from the stream of characters
+        * each word in the sequence is called a lexical token
+    * if a word appears more than once in the text, its token will appear more than once in the sequence of tokens (bag-of-words)
+2. __Stemming__
+    * Identification of a common base form that represent several variations of a token
+    * Avoids having a large number of tokens
+    * Transforms tokens into their __stem__
+        *_e.g._ for the words “studied”, “studying”, “student”, “studies”, “study” their stem is "studi"
+3. __Lemmatization__
+    * Sophisticated variation of _stemming_
+    * Uses a vocabulary and takes grammatical aspects of language into account, performing a morphological analysis
+    * Returns the dictionary form of a word, which is called a __lemma__
+![lemma vs stem](https://qph.fs.quoracdn.net/main-qimg-cd7f4bafaa42639deb999b1580bea69f)
+4. __Removal of stop words__
+    * Reduce the number of stems by removing stop words
+        * such as adjectives, adverbs, articles, negations, pronouns, prepositions, conjunctions, qualifiers, etc
+    * Stop words that will be removed are application dependent
+        *_e.g_ negations are important when mining opinions
+5. __Conversion to structured data__
+    * Creating a table with binary (presence of a stem in the text) or quantitative (frequency of a stem in the text) values
+
+Text feature extraction example, after applying all steps:
+![extraction example](https://www.meaningcloud.com/developer/img/resources/models/models-tokenization-example.png) 
+
+## Recommender systems
+
+### Recommendation task
+* Explicit feedback
+    * The system asks the user to express a preference on items directly (rating, ranking, etc)
+* Implicit feedback
+    * Obtained through analysis of user interactions (viewed, saved, copied items, etc)
+* Given
+    * set of users _{u1, u2, ..., un}_
+    * set of items _{i1, i2, ..., i3}_
+    * recorded feedbacks _{rui | u in users, i in items}_
+* Output
+    * model F that predicts for each user-item pair _(u, i)_ a value _rui_ representing the predicted feedback of the user _u_ for the item _i_
+
+* For the examples presented below, consider the following table:
+
+| | Titanic | Pulp Fiction | Iron Man | Forrest Gump | The Mummy |
+|:-|:-:|:-:|:-:|:-:|:-:|
+| Eve | 1 | 4 | 5 | | 3 |
+| Fred | 5 | 1 | | 5 | 2 | 
+| Irene | 4 | 1 | 2 | 5 | |
+| James | __?__ | 3 | 4 | __?__ | 4 |
+
+* And the respective Item recommendation table
+
+| | Titanic | Pulp Fiction | Iron Man | Forrest Gump | The Mummy |
+|:-|:-:|:-:|:-:|:-:|:-:|
+| Eve | 1 | 1 | 1 | | 1 |
+| Fred | 1 | 1 | | 1 | 1 | 
+| Irene | 1 | 1 | 1 | 1 | |
+| James | __?__ | 1 | 1 | __?__ | 1 |
+
+### Knowledge based techniques
+* Recommendations are based on
+    * items' attributes
+        * _e.g_ price and type of car, number of seats, etc
+    * users' requirements
+        * _e.g._ maximum value to pay is _X_, car for family, etc
+    * domain knowledge that relates item's attributes with users' requirements
+        * _e.g_ family car should have at least 5 seats
+    * domain knowledge between users' requirements
+        * _e.g._ if family car is required, maximum price must above 2k
+* Recommendation process is interactive
+* High cost of preparing underlying knowledge, since it is __domain dependent__
+    * as a result, __system is inflexible__
+
+### Content based techniques
+* Users' interests learned by ML techniques
+    * a model of the feedback (Y column) of a given user is learned from the attributes of items rated or ranked by the user in the past
+    * Allows prediction of rankings / ratings of users-items pairs
+
+### Model-based collaborative filtering
+* Recognizes similarities between users according to their feedback and recommends items preferred by like- minded users
+    * ![extras](https://i.imgur.com/1XF3h95.png)
+* can provide good results even in cases with low information
+![formulas](https://i.imgur.com/X1Rr5WM.png)
+* Item recommendation and cosine vector similarity
+    * ![example](https://i.imgur.com/QbBdn5j.png)
+        * _e.g._ of _sim(x, y)_ calculus (__uses the item recomendation table__)
+            * _sim(Eve, Fred) = (1\*1 + 1\*1 + 1\*0 + 0\*1 + 1\*1) / sqrt((1^2 + 1^2 + 1^2 + 0^2 + 1^2) * (1^2 + 1^2 + 0^2 + 1^2 + 1^2) = 3 / sqrt(4*4) = 3 / 4 = 0.75_
+            * _sim(James, Irene) = (0\*1 + 1\*1 + 1\*1 + 0\*1 + 1\*0) / sqrt((0^2 + 1^2 + 1^2 + 0^2 + 1^2) * (1^2 + 1^2 + 1^2 + 1^2 + 0^2) = 2 / sqrt(3*4) = 2 / 3.464 = 0.577 =~ 0.58_
+        * Notice how Eve, despite having the highest _sim()_ with James, is not considered a nearest neighbour for the movie Forrest Gump -> she did not see the movie, that is why
+* Raitng prediction and Pearson correlation similarity
+    * ![Imgur](https://i.imgur.com/okKGh1y.png)
+> Teacher did not present Pearson formula so expect that not to appear in exam (too complex to)
+* Basic idea to map the users and items into a common latent space
+* The dimensions of this space, often called factors, represent some implicit properties of items and users’ interests in these implicit properties
+* Low-rank factorization
+    * user-item matrix ___R___ with _n_ rows and _m_ columns
+* Goal
+    * user matrix ___W___ of ___n___ rows and _k_ columns
+    * item matrix ___H___ of _k_ rows and ___m___ columns
+    * such that ___W * H = R ___
+* Formulas
+    * ![formulas](https://i.imgur.com/yXbDyVo.png)
+* Matrix factorization example
+    * ![Matrix factorization example](https://i.imgur.com/tvZiPWT.png)
+
+### Social Network Analysis
+* Consider the below figure as an example graph
+
+```
+A---B---C
+| / | /
+D---E
+```
+
+* Representation using Graphs
+    * undirected
+    * weighted
+    * directed
+    * directed _&_ weighted
+* __Adjacency matrix__
+    * rows and columns represents nodes
+    * if m\[x\]\[y\] > 0, then there X is connected to Y (considering matrix in 1st power)
+    * adjacency matrix in 2nd power:
+        * shows the number of paths (sequence of edges) of length 2 between pairs of nodes
+        * _e.g._ m\[x\]\[y\] = 4, then there are 4 paths of length 2 connecting X to Y
+* __Nodes' properties__
+    * Degree
+        * number of connections of the node
+        * in-degree (only makes sense on connected graphs)
+            * edges entering in this node
+            * in the adjacency matrix: sum of corresponding columns
+        * out-degree (only makes sense on connected graphs)
+            * edges leaving this node
+            * in the adjacency matrix: sum of corresponding rows
+    * Distance
+        * minimum number of edges that connect two nodes
+    * Closeness
+        * reflects how accessible a node is in the network
+        * decreases with the size of the network
+        * _closeness(v) = 1 / sum(distance(u, v), u != v)_
+    * Betweenness
+        * assesses how important the position of a node in the network is
+        * ![Betweenness formula](https://i.imgur.com/8cTwyJZ.png)
+        * Betweeness example:
+            * ![Betweeness example](https://i.imgur.com/F1T982W.png)
+    * Clustering coefficient (of a node)
+        * measures the tendency of a node to be included in a triad
+        * ![clust_coeff](https://i.imgur.com/wxtXuL1.png)
+    * Diameter
+        * longest of all distance between the nodes of the network
+    * Cliques
+        * subset of nodes such that every two nodes in these subsets are connected
+        * _e.g_ consider the aboce graph example
+            * cliques of size 3 are the following subsets: _{A, B, D}, {B, D, E}, {C, B, E}_
+    * Clustering coefficient (of the network)
+        * expresses the probability that the triples in the network are connected to form a triangle
+        * _e.g._ consider the above graph example
+        * triples: _{A, B, C}, {A, B, E}, {A, B, D}, {A, D, E}, {B, C, E}, {B, E, D}, {C, E, D}_
+        * triangles: _{A, B, D}, {B, D, E}, {C, B, E}_
+        * clustering coefficiente = _3/7_ =~ 0.43
+    * Centralization
+        * ![centralization](https://i.imgur.com/nb2rTJb.png)
+    * Modularity
+        * expresses the degree to which a network displays cluster structures (often called communities)
+
+### Final remarks
+* Most important in text mining is the good pre- processing of the text
+* A trend is to combine text mining with _NLP_ to get better results
+* Measuring the performance of a recommender system is not so easy
+    * coverage, scalability, robustness, novelty, serendipity
+* Cold start problem arises when a new user or item arrive to the system
+    * system cannot draw any inferences for users or items about which it has not yet gathered sufficient information
+* Context-based and group recommendations
+* Basic node/network properties can be used as
+features in machine learning applications.
+    * _e.g._ link prediction, community detection, etc
+
+---
