@@ -1,5 +1,12 @@
 # Summary of ECAC's theoretical material
 
+## INDEX:
+* [Clustering](#clustering)
+* [Frequent Pattern Mining](#Frequent-Pattern-Mining)
+* [Working with Texts](#Working-with-Texts)
+* [Recommender systems](#Recommender-systems)
+* [Social Network Analysis](#Social-Network-Analysis)
+
 ---
 
 ## Clustering
@@ -376,7 +383,11 @@ Main obstacle is the large number of resulting patterns
     * Creating a table with binary (presence of a stem in the text) or quantitative (frequency of a stem in the text) values
 
 Text feature extraction example, after applying all steps:
-![extraction example](https://www.meaningcloud.com/developer/img/resources/models/models-tokenization-example.png) 
+![extraction example](https://www.meaningcloud.com/developer/img/resources/models/models-tokenization-example.png)
+
+### Final remarks
+* Most important in text mining is good pre-processing of the text
+* A trend is to combine text mining with _NLP_ to get better results
 
 ## Recommender systems
 
@@ -450,13 +461,20 @@ Text feature extraction example, after applying all steps:
 * Goal
     * user matrix ___W___ of ___n___ rows and _k_ columns
     * item matrix ___H___ of _k_ rows and ___m___ columns
-    * such that ___W * H = R ___
+    * such that ___W * H = R___
 * Formulas
     * ![formulas](https://i.imgur.com/yXbDyVo.png)
 * Matrix factorization example
     * ![Matrix factorization example](https://i.imgur.com/tvZiPWT.png)
 
-### Social Network Analysis
+### Final remarks
+* Measuring the performance of a recommender system is not so easy
+    * coverage, scalability, robustness, novelty, serendipity
+* Cold start problem arises when a new user or item arrive to the system
+    * system cannot draw any inferences for users or items about which it has not yet gathered sufficient information
+* Context-based and group recommendations
+
+## Social Network Analysis
 * Consider the below figure as an example graph
 
 ```
@@ -517,15 +535,7 @@ D---E
         * expresses the degree to which a network displays cluster structures (often called communities)
 
 ### Final remarks
-* Most important in text mining is the good pre- processing of the text
-* A trend is to combine text mining with _NLP_ to get better results
-* Measuring the performance of a recommender system is not so easy
-    * coverage, scalability, robustness, novelty, serendipity
-* Cold start problem arises when a new user or item arrive to the system
-    * system cannot draw any inferences for users or items about which it has not yet gathered sufficient information
-* Context-based and group recommendations
-* Basic node/network properties can be used as
-features in machine learning applications.
+* Basic node/network properties can be used as features in machine learning applications.
     * _e.g._ link prediction, community detection, etc
 
 ---
