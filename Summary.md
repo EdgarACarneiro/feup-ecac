@@ -1,11 +1,13 @@
 # Summary of ECAC's theoretical material
 
-## INDEX:
+## Index
 * [Clustering](#clustering)
 * [Frequent Pattern Mining](#Frequent-Pattern-Mining)
 * [Working with Texts](#Working-with-Texts)
 * [Recommender systems](#Recommender-systems)
 * [Social Network Analysis](#Social-Network-Analysis)
+* [Advanced Predictive Methods](#Advanced-Predictive-Methods)
+* [Case studies](#Case-studies)
 
 ---
 
@@ -539,3 +541,218 @@ D---E
     * _e.g._ link prediction, community detection, etc
 
 ---
+
+## Advanced Predictive Methods
+
+### Ensemble learning
+* Combine more than one model
+    * Class predicted by each base classifier are combined to define the class predicted by the ensemble
+* Can be used for predictive and descriptive tasks
+    * Classification, regression and clustering
+* Main approaches
+    * Bagging
+    * Boosting
+    * Random forest
+* Can be:
+    * __Homogeneous__
+        * All models are induced by the same algorithm
+    * __Heterogeneous__
+        * Models are induced by different algorithms
+* Different combining approaches present in the figure below
+    * ![combining approaches](https://i.imgur.com/y4HGS5h.png)
+* The combination of the classes predicted by the base classifiers usually occurs by:
+    * Voting
+    * Weighted voting
+    * Stacking
+
+### Bagging
+* Parallel approach
+* Each base classifier is induced using a sample of the training set
+    * The samples, defined using bootstrap, have the same number of objects present in the training set
+* Combines the predictions from the base classifiers using voting
+* Pros
+    * Typically improves the predictive performance of the base learner since the base learner is an unstable predictor
+    * Almost hyper-parameter free because the number of trees to be generated does not need to be tuned and decision trees, the most used base learner for bagging, is hyper-parameter free
+* Cons
+    * Due to the bootstrap sampling, is stochastic (random)
+    * Like any ensemble approach, is computationally more expansive than using a single model
+
+### Random Forest
+* Combine decision trees, creating a forest-like model
+* Like in Bagging, grow each decision tree using a different bootstrap sample
+    * Combine individual predictions using voting
+    * Different from Bagging, at each node of the tree, only use a predefined number of attributes randomly selected at each node
+* Usually has high predictive performance and is interpretable
+* Can have a high computational cost
+Pros
+    * High very good predictive performance in many problems
+    * Easy to define/tune its hyper-parameters
+* Cons
+    * Computationally expensive since the number of recommended trees is large
+    * Like bagging, it can be parallelized
+    * It is stochastic
+
+### AdaBoost
+* Belongs to the Boosting set of methods
+    * The idea of boosting is to train weak learners sequentially, each trying to correct its predecessor.
+*  At each training iteration, a base classifier is induced using the training set
+    *  Each object from the training set is weighted according to how well the base classifier predicted its class
+        * The more difficult the correct classification of an object, the larger the weight associated with this object
+        * Weight of an object define its probability of being selected for the training of the next base classifier
+* Sequential approach
+* Pros
+    * High predictive performance in several problems
+    * Easy to define/tune its hyper-parameter
+    * Algorithm with highest performance over kaggle (curiosity)
+* Cons
+    * Computationally expensive, since the number of generated models depend on the number of iterations
+    * Difficult parallelization, since this is a sequential algorithm
+    * Difficult interpretation of the induced model
+
+### Algorithm bias
+* Definition:
+    * Algorithmic bias describes systematic and repeatable errors in a computer system that create unfair outcomes, such as privileging one arbitrary group of users over others
+* Each technique is better on a subset of tasks
+* Each ML algorithm has an inductive bias
+* Preference for selecting one hypothesis over other hypotheses
+* Fixed and based on data-independent choices
+* Necessary for learning to take place
+* Includes:
+    * __Declarative__ (representation) __bias__
+        * How to represent the hypotheses
+        * _e.g._ Prefer conjunctions of predictive attribute values over disjunctions
+    * __Procedural__ (search) __Search bias__
+        * How to search for the correct hypothesis
+        * _e.g._ Start with small hypotheses
+
+### Non-binary classification tasks
+* One class classification
+* Multiclass classification
+* Hierarchical classification
+* Multi-label classification
+* Multi-target classification
+* Ranking classification
+
+### One-class classification
+* Training data from just one class (positive) - tries to identify objects of a specific class amongst all objects, by primarily learning from a training set containing only the objects of that class
+    * Unary classification
+    * Obtain negative class data can be: 
+        * Difficult
+        * Expensive
+        * Time consuming
+    * Harm predictive accuracy
+    * _e.g._ operation status of a nuclear plant as 'normal'
+        * There are few, if any, examples of the negative class
+* ![one class classification example](https://i.imgur.com/d1Xm4zW.png)
+
+### Multi-class classification
+* Number of possible classes is larger than 2 
+    * Many real classification problems are multiclass classification problems
+    * Several algorithms deal only with 2 classes
+        * To use them, the original multi-class problem is decomposed into several binary classification problems (similar to dummy variables)
+* ![multi class classification example](https://i.imgur.com/MQeK45d.png)
+
+### Ranking classification
+* Produces output values for N (or less) classes for each input example
+    * Ordered by relevance
+* Frequently used in information retrieval
+    * Search engines
+* Error can be measured by ranking comparison
+    * True ranking x Predicted ranking
+* ![ranking classification example](https://i.imgur.com/PdvuIO0.png)
+
+### Multi-label classification 
+* Examples can simultaneously belong to more than 1 class
+* Transformation into a single-label problem
+    * Algorithm independent
+        *Combination of conventional single label-classifiers
+        * Algorithm dependent
+            * > ASK Damas for help here
+            * Modification of single-label classifiers
+            * Development of new multi-label algorithms
+* ![multi label classification example](https://i.imgur.com/ukpLBv5.png)
+* > In multi-class problems the classes are mutually exclusive, whereas for multi-label problems each label represents a different classification task, but the tasks are somehow related (so there is a benefit in tackling them together rather than separately). For example, in the famous leptograspus crabs dataset there are examples of males and females of two colour forms of crab. You could approach this as a multi-class problem with four classes (male-blue, female-blue, male-orange, female-orange) or as a multi-label problem, where one label would be male/female and the other blue/orange. Essentially in multi-label problems a pattern can belong to more than one class.
+
+### Multi-target classification
+* More than one target attribute exist
+* Of course, it is possible to treat a multi-target classification problem as several independent problems, one per target
+* However, the predictions of different target attributes can be somehow correlated
+    * Classifier chain is a technique that uses the prediction done for one target attribute as predictive attribute for the remaining target attributes, in a chain-like way
+* > They are not same, rather two inter-related concepts but have major difference. Actually multi-label classification is derived from multi-target. In multi-label learning a data instance may be associated with multiple binary class labels. This is as opposed to the traditional task of single-label (i.e., multi-class, or binary) classification where each instance is only associated with a single class label. The multi-label learning problem is in fact a special case of multi-target learning (also known as multi-dimensional or multi-objective), where each label can take multiple values, as opposed to binary labels indicating relevance or not.
+
+###  Hierarchical classification
+* Classes can be structured into an hierarchical structure, with subclasses in superclasses
+* Each unlabeled object can be classified in:
+    * The class associated to any node
+        * Prediction to any node
+    * One of the leaf nodes of the hierarchical structure
+        * Mandatory leaf nodes prediction
+* ![hierarchical classification example](https://i.imgur.com/VHM6P5b.png)
+
+### Multiclass problems
+* Several ML algorithms induce only binary classifiers
+    * _e.g._ SVMs, logistic regression
+* What to do?
+    * Adapt algorithm to multiclass tasks
+    * Use multiclass strategies
+        * Decomposition into several binary problems
+            * Code matrices
+            * Hierarchy of classifiers
+
+### Imbalanced data classification
+* Frequent problem in labelled datasets
+    * For binary and multiclass tasks
+    * Can also occur in regression tasks
+* Affect predictive performance of most ML algorithms
+* Main approaches to deal with imbalance
+    * __Oversampling__
+        * Increase number of entries of the minority class
+    * __Undersampling__
+        * Reduce number of entries of the majority class
+
+###  Incomplete target labelling
+* Part of the dataset may have no class label
+* But label can be assigned to unlabelled data
+* Two main approaches:
+    * __Semi-supervised learning__
+        * Use labeled objects to assign a class label to the unlabeled objects
+    * __Active learning__
+        * Select unlabeled objects supposed to be more useful in the learning process
+* Humans can also be used for the class labeling - Manual class labeling
+
+### Description _vs_ prediction with supervised interpretable techniques
+* Supervised classification techniques can also be used in descriptive tasks
+    * They can be trained with all objects in the data set, since the induced model will not be used for prediction
+    * Model will describe some patterns present in a data set
+        * Allows interpretation of the data available
+* The model must be interpretable
+    * Excludes black box models
+
+### Final remarks
+* Predictive performance can be improved by using ensembles
+* Algorithm bias defines how an algorithm fits a dataset
+* There are many non-binary classification tasks
+* Imbalanced data affects predictive performance
+* A dataset can be partially labelled
+* Supervised learning techniques can be used for descriptive tasks
+
+## Case studies
+
+### Heterogeneous Ensembles for Long Term Travel Time Prediction
+* Results
+    * From the four tested predictors, for non-circular lines, the expert-based method and the ensemble approach are the most accurate and robust ones
+    * Comparison between these two methods:
+        1. The ensemble approach has a small advantage in terms of accuracy;
+        2. It is more difficult to include other features for the expert-based method when compared to the ensemble approach;
+        3. Much more time and data is necessary to configure the ensemble model when compared to the expert-based method;
+        4. Without knowing how to quantify the business value of the increase in accuracy, we can not give a price to pay for a device incorporating these methods on a day-to-day basis in the planning process.
+
+### Bus Bunching Prevention
+* Problem Overview
+    * In highly frequent bus routes, when one bus falls the schedule, the subsequent bus may pass with a short interval to the first one. This is called an Headway Deviation (HD).
+    * Such events often cause Bus Bunching occurrences, the two buses will meet at a bus stop, forming a platoon.
+    * The four corrective actions that are used to prevent bus bunching are:
+        1. Bus Holding;
+        2. Stop-Skipping;
+        3. Speed modification;
+        4. Short-Turning.
