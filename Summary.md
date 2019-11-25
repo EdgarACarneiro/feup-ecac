@@ -661,20 +661,20 @@ Pros
     * True ranking x Predicted ranking
 * ![ranking classification example](https://i.imgur.com/PdvuIO0.png)
 
-### Multi-label classification 
+### Multi-label classification
 * Examples can simultaneously belong to more than 1 class
 * Transformation into a single-label problem
-    * Algorithm independent
-        *Combination of conventional single label-classifiers
-        * Algorithm dependent
-            * > ASK Damas for help here
-            * Modification of single-label classifiers
-            * Development of new multi-label algorithms
+    * Algorithm independent (Change the data to fit existing algorithms)
+        * Combination of conventional single label-classifiers
+    * Algorithm dependent (create algorithms to support multi-labels)
+        * Modification of single-label classifiers
+        * Development of new multi-label algorithms
 * ![multi label classification example](https://i.imgur.com/ukpLBv5.png)
 * > In multi-class problems the classes are mutually exclusive, whereas for multi-label problems each label represents a different classification task, but the tasks are somehow related (so there is a benefit in tackling them together rather than separately). For example, in the famous leptograspus crabs dataset there are examples of males and females of two colour forms of crab. You could approach this as a multi-class problem with four classes (male-blue, female-blue, male-orange, female-orange) or as a multi-label problem, where one label would be male/female and the other blue/orange. Essentially in multi-label problems a pattern can belong to more than one class.
 
 ### Multi-target classification
 * More than one target attribute exist
+    * Meaning more than one Y variable to predict (_e.g._ Y1 _&_ Y2).
 * Of course, it is possible to treat a multi-target classification problem as several independent problems, one per target
 * However, the predictions of different target attributes can be somehow correlated
     * Classifier chain is a technique that uses the prediction done for one target attribute as predictive attribute for the remaining target attributes, in a chain-like way
