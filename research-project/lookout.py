@@ -40,9 +40,13 @@ feature_pairs = list(ncr(all_features, 2))
 scores = None
 classifier = IF() #Isolation Forest instance used to train and score outliers
 for feature_pair in feature_pairs:
-    classifier.fit(full_df[list(feature_pair)])
+    classifier.fit(full_df[list(feature_pair)]) #Model for current feature pair
     scores = np.array([classifier.decision_function(outlier_df[list(feature_pair)]).tolist()]) if scores is None \
                 else np.append(scores, [classifier.decision_function(outlier_df[list(feature_pair)]).tolist()], axis=0)
+
+#In Isolation Forest, negative scores are considered outliers and positive scores inliers. 
+#We flip the sign so more negative values are actually more relevant, i.e., mean that that feature pair better helps explain given outlier
+scores = np.negative(scores)
 
 #Plot selection using greedy heuristic approach (see paper for proof of near optimality)
 S = [] #Final plot selection
