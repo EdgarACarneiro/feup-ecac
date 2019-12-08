@@ -50,7 +50,7 @@ for feature_pair in feature_pairs:
 #To ensure greedy approximation optimality we must ensure non negative range, i.e, convert scores to [0,1]
 #To do this, we flip the sign (so negatives become positives and outliers actually have better scores) and add 0.5
 transform_range = np.vectorize(lambda x: 0.5 - x)
-scores = trasnform_range(scores)
+scores = transform_range(scores)
 
 #Plot selection using greedy heuristic approach (see paper for proof of near optimality)
 S = [] #Final plot selection
