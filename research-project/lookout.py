@@ -46,9 +46,11 @@ for feature_pair in feature_pairs:
     scores = np.array([classifier.decision_function(outlier_df[list(feature_pair)]).tolist()]) if scores is None \
                 else np.append(scores, [classifier.decision_function(outlier_df[list(feature_pair)]).tolist()], axis=0)
 
-#In Isolation Forest, negative scores are considered outliers and positive scores inliers. 
-#We flip the sign so more negative values are actually more relevant, i.e., mean that that feature pair better helps explain given outlier
-scores = np.negative(scores)
+#In Isolation Forest, negative scores are considered outliers and positive scores inliers. Original range is [-0.5, 0.5]
+#To ensure greedy approximation optimality we must ensure non negative range, i.e, convert scores to [0,1]
+#To do this, we flip the sign (so negatives become positives and outliers actually have better scores) and add 0.5
+transform_range = np.vectorize(lambda x: 0.5 - x)
+scores = trasnform_range(scores)
 
 #Plot selection using greedy heuristic approach (see paper for proof of near optimality)
 S = [] #Final plot selection
