@@ -22,14 +22,16 @@ BUDGET = 3
 
 time = -timer()
 #Load dataset
-#full_df = pd.read_csv("HTRU_2.csv", nrows=1000) #Faster and easier alternative to test (worse results, of course)
-full_df = pd.read_csv("HTRU_2.csv")
+full_df = pd.read_csv("HTRU_2.csv", nrows=500) #Faster and easier alternative to test (worse results, of course)
+#full_df = pd.read_csv("HTRU_2.csv")
 
-#Isolate outliers
+#Isolate outliers and inliers
+inlier_df = full_df.loc[full_df['Class'] == 0] #Points to later be drawn in BLACK
 outlier_df = full_df.loc[full_df['Class'] == 1]
 
 #Remove target column, to not get mixed as a feature
 full_df.drop(columns=['Class'], inplace=True)
+inlier_df.drop(columns=['Class'], inplace=True)
 outlier_df.drop(columns=['Class'], inplace=True)
 
 #Get all available features and combine them 2 by 2
@@ -65,3 +67,20 @@ time = time + timer()
 
 print("Final selection: {}".format(S))
 print("Execution time: {0:.2f}s".format(time))
+
+#Actual Plotting
+outlier_points = [] #Tuple of (best_outliers, other_outliers) for each feature pair; IDS ONLY! MUST RETRIEVE FROM OUTLIER DATAFRAME
+#For each selected plot, obtain list of outliers that are best explained by that feature pair (to be drawn in RED)
+#Remaining outliers to be drawn in BLUE
+for feature_pair in S:
+    feature_pair_row_idx = get_row_indices([feature_pair], feature_pairs)[0]
+    outliers_max_plot_scores = np.max(scores,axis=0)
+    feature_pair_plot_scores = scores[feature_pair_row_idx]
+    score_comparison = np.isclose(outliers_max_plot_scores, feature_pair_plot_scores) #Returns boolean array checking if float values are close enough to be considered true #TODO Needs tuning?
+    best_outliers_ids = list(map(lambda x: x[0], filter(lambda y: y[1], enumerate(score_comparison.tolist())))) #IDs (in outliers dataframe) of outliers best explained by this feature pair
+    remaining_outliers_ids = list(set(range(outlier_df.shape[0])) - set(best_outliers_ids)) #shape property is a fast, safe way to extract number of rows in dataframe (x-shape)
+    outlier_points.append((best_outliers_ids, remaining_outliers_ids))
+
+
+#Create plots and save them to images
+#TODO...
