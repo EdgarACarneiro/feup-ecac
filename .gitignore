@@ -6,5 +6,6 @@ project-competition/dataset
 __pycache__*
 env
 venv
+out
 
 project-competition/images/*
