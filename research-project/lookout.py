@@ -45,8 +45,9 @@ def lookout(args):
     time = -timer()
     # Load dataset
     # Faster and easier alternative to test (worse results, of course)
-    full_df = pd.read_csv("HTRU_2.csv", nrows=500)
+    #full_df = pd.read_csv("HTRU_2.csv", nrows=500)
     #full_df = pd.read_csv("HTRU_2.csv")
+    full_df = pd.read_csv("HTRU_2_filtered.csv")
 
     # Isolate outliers and inliers
     # Points to later be drawn in BLACK
