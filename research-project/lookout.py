@@ -3,6 +3,8 @@ import pandas as pd
 from itertools import combinations as ncr
 import numpy as np
 from timeit import default_timer as timer
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Get row indices of given feature pairs
 
@@ -35,7 +37,8 @@ full_df = pd.read_csv("HTRU_2.csv", nrows=500)
 # Isolate outliers and inliers
 # Points to later be drawn in BLACK
 inlier_df = full_df.loc[full_df['Class'] == 0]
-outlier_df = full_df.loc[full_df['Class'] == 1]
+outlier_df = full_df.loc[full_df['Class'] ==
+                         1].reset_index().drop(['index'], axis=1)
 
 # Remove target column, to not get mixed as a feature
 full_df.drop(columns=['Class'], inplace=True)
@@ -101,6 +104,37 @@ for feature_pair in S:
         set(range(outlier_df.shape[0])) - set(best_outliers_ids))
     outlier_points.append((best_outliers_ids, remaining_outliers_ids))
 
+# Plotting the chosen features
+for feature_pair, outliers_p in zip(S, outlier_points):
+    # Adding inliers
+    plot_df = inlier_df.copy()
+    plot_df = plot_df[list(feature_pair)]
+    plot_df['class'] = 'inlier'
+    plot_df['point_size'] = 30
 
-# Create plots and save them to images
-# TODO...
+    # Other outliers
+    other_outliers = outlier_df.iloc[outliers_p[1]]
+    other_outliers = other_outliers[list(feature_pair)]
+    other_outliers['class'] = 'other'
+    other_outliers['point_size'] = 45
+
+    # Explained outliers
+    best_outliers = outlier_df.iloc[outliers_p[0]]
+    best_outliers = best_outliers[list(feature_pair)]
+    best_outliers['class'] = 'best'
+    best_outliers['point_size'] = 45
+
+    # Joining all the dataframes
+    plot_df = plot_df.append(best_outliers)
+    plot_df = plot_df.append(other_outliers)
+
+    # Plotting
+    f, ax = plt.subplots(figsize=(6.5, 6.5))
+    sns.scatterplot(x=feature_pair[0], y=feature_pair[1],
+                    hue="class", size="point_size",
+                    palette=sns.color_palette(
+                        ["#000000", "#FF0000", "#0000FF"]),
+                    linewidth=1, legend='full', alpha=0.7,
+                    edgecolor='black',
+                    data=plot_df, ax=ax)
+    plt.show()
