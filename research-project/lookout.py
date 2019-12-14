@@ -56,9 +56,9 @@ def lookout(args):
     time = -timer()
     # Load dataset
     # Faster and easier alternative to test (worse results, of course)
-    full_df = pd.read_csv("HTRU_2.csv", nrows=500)
+    #full_df = pd.read_csv("HTRU_2.csv", nrows=500)
     #full_df = pd.read_csv("HTRU_2.csv")
-    #full_df = pd.read_csv("HTRU_2_filtered.csv")
+    full_df = pd.read_csv("HTRU_2_filtered.csv")
     #full_df = pd.read_csv("CTG_Filtered.csv")
 
     # Isolate outliers and inliers
@@ -99,7 +99,8 @@ def lookout(args):
         candidate_pairs_marginal_gains = []
         for candidate_pair in candidate_pairs:
             candidate_pairs_marginal_gains.append(
-                get_scaling_factor(S+[candidate_pair], S, args.factor)*(f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)))  # Marginal gain of current feature pair
+                get_scaling_factor(S+[candidate_pair], S, args.factor) * \
+                    (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)))  # Marginal gain of current feature pair
 
         # Get max marginal gain, its index and retrieve respective feature pair
         S.append(candidate_pairs[candidate_pairs_marginal_gains.index(
@@ -160,9 +161,7 @@ def lookout(args):
         f, ax = plt.subplots(figsize=(6.5, 6.5))
         sns.scatterplot(x=feature_pair[0], y=feature_pair[1],
                         hue="class", size="point_size",
-                        #palette=sns.color_palette(
-                        #    ["#000000", "#FF0000", "#0000FF"]),
-                        palette=sns.color_palette('coolwarm', n_colors=len(plot_df['class'].unique())),
+                        palette=sns.color_palette(["#000000", "#FF0000", "#0000FF"]) if len(plot_df['class'].unique()) == 3 else sns.color_palette(["#000000", "#0000FF"]),
                         linewidth=1, legend='full', alpha=0.7,
                         edgecolor='black',
                         data=plot_df, ax=ax)
