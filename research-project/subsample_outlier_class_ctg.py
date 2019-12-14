@@ -3,7 +3,7 @@ import pandas as pd
 
 full_df = pd.read_csv("CTG.csv")
 
-full_df.drop(columns=['FileName', 'Date', 'SegFile', 'A', 'B', 'C', 'D', 'E', 'AD', 'DE', 'LD', 'FS', 'SUSP', 'CLASS'], inplace=True) #This CLASS is a 10 digit classification system that we're not using
+full_df.drop(columns=['FileName', 'Date', 'SegFile', 'A', 'B', 'C', 'D', 'E', 'AD', 'DE', 'LD', 'FS', 'SUSP', 'CLASS', 'DR'], inplace=True) #This CLASS is a 10 digit classification system that we're not using
 full_df = full_df[full_df['NSP'] != 2] #Suspect class discarded, as described by original link
 
 print(full_df)
