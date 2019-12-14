@@ -58,8 +58,8 @@ def lookout(args):
     # Faster and easier alternative to test (worse results, of course)
     #full_df = pd.read_csv("HTRU_2.csv", nrows=500)
     #full_df = pd.read_csv("HTRU_2.csv")
-    full_df = pd.read_csv("HTRU_2_filtered.csv")
-    #full_df = pd.read_csv("CTG_Filtered.csv")
+    #full_df = pd.read_csv("HTRU_2_filtered.csv") #outlier proportion: ~0.002
+    full_df = pd.read_csv("CTG_Filtered.csv") #outlier proportion: ~0.1
 
     # Isolate outliers and inliers
     # Points to later be drawn in BLACK
@@ -78,7 +78,9 @@ def lookout(args):
 
     # Matrix with scores for all outliers on all feature-pair plots (row = plot, column = outlier)
     scores = None
-    classifier = IF()  # Isolation Forest instance used to train and score outliers
+    # Isolation Forest instance used to train and score outliers
+    classifier = IF(max_samples=64, contamination=0.1) #for CTG dataset
+    #classifier = IF(max_samples=64, contamination=0.02) #for HTRU dataset
     for feature_pair in feature_pairs:
         # Model for current feature pair
         classifier.fit(full_df[list(feature_pair)])
@@ -139,13 +141,13 @@ def lookout(args):
         plot_df = inlier_df.copy()
         plot_df = plot_df[list(feature_pair)]
         plot_df['class'] = 'inlier'
-        plot_df['point_size'] = 30
+        plot_df['point_size'] = 25
 
         # Other outliers
         other_outliers = outlier_df.iloc[outliers_p[1]]
         other_outliers = other_outliers[list(feature_pair)]
         other_outliers['class'] = 'other'
-        other_outliers['point_size'] = 45
+        other_outliers['point_size'] = 25
 
         # Explained outliers
         best_outliers = outlier_df.iloc[outliers_p[0]]
