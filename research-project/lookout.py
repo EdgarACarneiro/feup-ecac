@@ -170,10 +170,13 @@ def lookout(args):
         f, ax = plt.subplots(figsize=(6.5, 6.5))
         sns.scatterplot(x=feature_pair[0], y=feature_pair[1],
                         hue="class", size="point_size",
-                        palette=sns.color_palette(["#000000", "#FF0000", "#0000FF"]) if len(plot_df['class'].unique()) == 3 else sns.color_palette(["#000000", "#0000FF"]),
+                        palette=sns.color_palette(["#000000", "#FF0000", "#0000FF"])\
+                            if len(plot_df['class'].unique()) == 3 else (sns.color_palette(["#000000", "#0000FF"]) \
+                                                                        if 'other' in plot_df['class'].unique() else sns.color_palette(["#000000", "#FF00"]),
                         linewidth=1, legend='full', alpha=0.7,
                         edgecolor='black',
                         data=plot_df, ax=ax)
+        plt.autoscale(True)
 
         # Saving plots
         if not os.path.exists(args.output_dir):
