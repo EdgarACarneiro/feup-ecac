@@ -22,8 +22,11 @@ def parse_args():
     parser.add_argument("-o", "--output_dir", default=os.path.join("out", "plots"), type=str,
                         help="Output directory for the plots. Default: out/plots/")
     
-    parser.add_argument("-f", "--factor", default=0, type=int,
-                        help="Factor to scale marginal gain in order to force feature variance. Values 0 (no factor), 1 (linear), 2 (exponential). Default 0")
+    parser.add_argument("-n", "--new", action="store_true",
+                        help="Run modified algorithm (with alfa weighting)")
+    
+    parser.add_argument("-a", "--alfa", default=0.95, type=float,
+                        help="Alfa value to weigh both gain components. Default 0.9")
 
     return parser.parse_args()
 
@@ -32,17 +35,14 @@ def get_row_indices(S, feature_pairs):
     """Get row indices of given feature pairs"""
     return list(map(lambda elem: feature_pairs.index(elem), S))
 
-def get_scaling_factor(current_pairs, proposed_pairs, arg):
-    """Gets the scaling factor to try and force feature variance"""
-    if arg == 0: #no scaling
+def get_num_features(S):
+    """Counts number of unique features in given pair combination subset"""
+    if not len(S):
         return 1
-    elif arg == 1: #linear
-        return 1
-    else: #exponential
-        return 1
+        
+    return len(np.unique(np.array(list(sum(S, ())))))
 
-def lookout(args):
-    def f(S, outlier_scores):
+def f(S, outlier_scores):
         """Calculate total incrimination score of a given subset of plots (feature pairs)"""
         # Base case
         if not len(S):
@@ -53,6 +53,24 @@ def lookout(args):
         # Max score on each column (best plot for each outlier) and respective sum of all values
         return sum(np.max(scores_S, axis=0))
 
+def get_marginal_gain(S, candidate_pair, feature_pairs, scores, args):
+    """Calculates marginal gain of a given feature pair in relation to current selected plots"""
+    if args.new:
+        return args.alfa * (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)) + \
+                (1-args.alfa) * (get_num_features(S+[candidate_pair]) / get_num_features(S))
+    else:
+        return f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)
+
+def get_palette(df):
+    classes = df['class'].unique()
+    if len(classes) == 3:
+        return sns.color_palette(["#000000", "#FF0000", "#0000FF"])
+    elif 'other' in classes: #Only 2 classes, inlier and other outliers
+        return sns.color_palette(["#000000", "#0000FF"])
+    else: #Only 2 classes, inlier and best outliers
+        return sns.color_palette(["#000000", "#FF0000"])
+
+def lookout(args):
     # Number of plots to choose
     BUDGET = args.budget
 
@@ -107,9 +125,8 @@ def lookout(args):
         candidate_pairs = list(set(feature_pairs) - set(S))
         candidate_pairs_marginal_gains = []
         for candidate_pair in candidate_pairs:
-            candidate_pairs_marginal_gains.append(
-                get_scaling_factor(S+[candidate_pair], S, args.factor) * \
-                    (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)))  # Marginal gain of current feature pair
+            # Marginal gain of current feature pair
+            candidate_pairs_marginal_gains.append(get_marginal_gain(S, candidate_pair, feature_pairs, scores, args))
 
         # Get max marginal gain, its index and retrieve respective feature pair
         S.append(candidate_pairs[candidate_pairs_marginal_gains.index(
@@ -131,9 +148,9 @@ def lookout(args):
             [feature_pair], feature_pairs)[0]
         outliers_max_plot_scores = np.max(scores, axis=0)
         feature_pair_plot_scores = scores[feature_pair_row_idx]
-        # Returns boolean array checking if float values are close enough to be considered true #TODO Needs tuning?
+        # Returns boolean array checking if float values are close enough to be considered true
         score_comparison = np.isclose(
-            outliers_max_plot_scores, feature_pair_plot_scores)
+            feature_pair_plot_scores, outliers_max_plot_scores, atol=1e-6)
         # IDs (in outliers dataframe) of outliers best explained by this feature pair
         best_outliers_ids = list(map(lambda x: x[0], filter(
             lambda y: y[1], enumerate(score_comparison.tolist()))))
@@ -170,9 +187,7 @@ def lookout(args):
         f, ax = plt.subplots(figsize=(6.5, 6.5))
         sns.scatterplot(x=feature_pair[0], y=feature_pair[1],
                         hue="class", size="point_size",
-                        palette=sns.color_palette(["#000000", "#FF0000", "#0000FF"])\
-                            if len(plot_df['class'].unique()) == 3 else (sns.color_palette(["#000000", "#0000FF"]) \
-                                                                        if 'other' in plot_df['class'].unique() else sns.color_palette(["#000000", "#FF00"]),
+                        palette=get_palette(plot_df),
                         linewidth=1, legend='full', alpha=0.7,
                         edgecolor='black',
                         data=plot_df, ax=ax)
