@@ -16,11 +16,14 @@ def parse_args():
     parser.add_argument("-b", "--budget", default=3, type=int,
                         help="Number of selected feature pairs. Default: 3.")
 
+    parser.add_argument("-d", "--dataset", default=0, type=int,
+                        help="Dataset to run algorithm. Values 0 (HTRU2), else (CTG). Default 0")
+
     parser.add_argument("-o", "--output_dir", default=os.path.join("out", "plots"), type=str,
                         help="Output directory for the plots. Default: out/plots/")
     
     parser.add_argument("-f", "--factor", default=0, type=int,
-                        help="Factor to scale marginal gain in order to force feature variance. Values 0 (no factor), 1 (linear), 2 (exponential)")
+                        help="Factor to scale marginal gain in order to force feature variance. Values 0 (no factor), 1 (linear), 2 (exponential). Default 0")
 
     return parser.parse_args()
 
@@ -58,8 +61,10 @@ def lookout(args):
     # Faster and easier alternative to test (worse results, of course)
     #full_df = pd.read_csv("HTRU_2.csv", nrows=500)
     #full_df = pd.read_csv("HTRU_2.csv")
-    #full_df = pd.read_csv("HTRU_2_filtered.csv") #outlier proportion: ~0.002
-    full_df = pd.read_csv("CTG_Filtered.csv") #outlier proportion: ~0.1
+    if args.dataset == 0:
+        full_df = pd.read_csv("HTRU_2_filtered.csv") #outlier proportion: ~0.002
+    else:
+        full_df = pd.read_csv("CTG_Filtered.csv") #outlier proportion: ~0.1
 
     # Isolate outliers and inliers
     # Points to later be drawn in BLACK
@@ -79,8 +84,10 @@ def lookout(args):
     # Matrix with scores for all outliers on all feature-pair plots (row = plot, column = outlier)
     scores = None
     # Isolation Forest instance used to train and score outliers
-    classifier = IF(max_samples=64, contamination=0.1) #for CTG dataset
-    #classifier = IF(max_samples=64, contamination=0.02) #for HTRU dataset
+    if args.dataset == 0:
+        classifier = IF(max_samples=64, contamination=0.02) #for HTRU dataset
+    else:
+        classifier = IF(max_samples=64, contamination=0.1) #for CTG dataset
     for feature_pair in feature_pairs:
         # Model for current feature pair
         classifier.fit(full_df[list(feature_pair)])
