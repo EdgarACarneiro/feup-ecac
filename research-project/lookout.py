@@ -24,7 +24,10 @@ def parse_args():
     
     parser.add_argument("-n", "--new", action="store_true",
                         help="Run modified algorithm (with alfa weighting)")
-    
+
+    parser.add_argument("-l", "--linear", action="store_true",
+                        help="Run modified algorithm (with linear scaling)")
+
     parser.add_argument("-a", "--alfa", default=0.95, type=float,
                         help="Alfa value to weigh both gain components. Default 0.9")
 
@@ -58,6 +61,8 @@ def get_marginal_gain(S, candidate_pair, feature_pairs, scores, args):
     if args.new:
         return args.alfa * (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)) + \
                 (1-args.alfa) * (get_num_features(S+[candidate_pair]) / get_num_features(S))
+    elif args.linear:
+        return (get_num_features(S+[candidate_pair]) / get_num_features(S))*(f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores))
     else:
         return f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)
 
