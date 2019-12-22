@@ -22,14 +22,14 @@ def parse_args():
     parser.add_argument("-o", "--output_dir", default=os.path.join("out", "plots"), type=str,
                         help="Output directory for the plots. Default: out/plots/")
     
-    parser.add_argument("-n", "--new", action="store_true",
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-n", "--new", action='store_true',
                         help="Run modified algorithm (with alfa weighting)")
-
-    parser.add_argument("-l", "--linear", action="store_true",
+    group.add_argument("-l", "--linear", action='store_true',
                         help="Run modified algorithm (with linear scaling)")
 
     parser.add_argument("-a", "--alfa", default=0.95, type=float,
-                        help="Alfa value to weigh both gain components. Default 0.9")
+                        help="Alfa value to weigh both gain components. Default 0.95")
 
     return parser.parse_args()
 
