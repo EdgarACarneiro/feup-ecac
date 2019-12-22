@@ -142,6 +142,7 @@ def lookout(args):
 
     print("Final selection: {}".format(S))
     print("Execution time: {0:.2f}s".format(time))
+    print("Incrimination: {}".format(f(S)/f(all_features)))
 
     # Actual Plotting
     # Tuple of (best_outliers, other_outliers) for each feature pair; IDS ONLY! MUST RETRIEVE FROM OUTLIER DATAFRAME
