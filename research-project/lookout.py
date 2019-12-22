@@ -8,7 +8,6 @@ from timeit import default_timer as timer
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Lookout algorithm')
@@ -24,12 +23,12 @@ def parse_args():
     
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-n", "--new", action='store_true',
-                        help="Run modified algorithm (with alfa weighting)")
+                        help="Run modified algorithm (with alpha weighting)")
     group.add_argument("-l", "--linear", action='store_true',
                         help="Run modified algorithm (with linear scaling)")
 
-    parser.add_argument("-a", "--alfa", default=0.95, type=float,
-                        help="Alfa value to weigh both gain components. Default 0.95")
+    parser.add_argument("-a", "--alpha", default=0.95, type=float,
+                        help="Alpha value to weigh both gain components. Default 0.95")
 
     return parser.parse_args()
 
@@ -56,11 +55,15 @@ def f(S, outlier_scores):
         # Max score on each column (best plot for each outlier) and respective sum of all values
         return sum(np.max(scores_S, axis=0))
 
+def get_incrimination(S, feature_pairs, scores):
+    """Calculates incrimination score f(S)/f(all_features)"""
+    return f(get_row_indices(S, feature_pairs), scores)/f(get_row_indices(feature_pairs, feature_pairs), scores)
+
 def get_marginal_gain(S, candidate_pair, feature_pairs, scores, args):
     """Calculates marginal gain of a given feature pair in relation to current selected plots"""
     if args.new:
-        return args.alfa * (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)) + \
-                (1-args.alfa) * (get_num_features(S+[candidate_pair]) / get_num_features(S))
+        return args.alpha * (f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores)) + \
+                (1-args.alpha) * (get_num_features(S+[candidate_pair]) / get_num_features(S))
     elif args.linear:
         return (get_num_features(S+[candidate_pair]) / get_num_features(S))*(f(get_row_indices(S+[candidate_pair], feature_pairs), scores) - f(get_row_indices(S, feature_pairs), scores))
     else:
@@ -81,13 +84,10 @@ def lookout(args):
 
     time = -timer()
     # Load dataset
-    # Faster and easier alternative to test (worse results, of course)
-    #full_df = pd.read_csv("HTRU_2.csv", nrows=500)
-    #full_df = pd.read_csv("HTRU_2.csv")
     if args.dataset == 0:
-        full_df = pd.read_csv("HTRU_2_filtered.csv") #outlier proportion: ~0.002
+        full_df = pd.read_csv("HTRU_2_filtered.csv")
     else:
-        full_df = pd.read_csv("CTG_Filtered.csv") #outlier proportion: ~0.1
+        full_df = pd.read_csv("HTRU_2.csv")
 
     # Isolate outliers and inliers
     # Points to later be drawn in BLACK
@@ -107,10 +107,7 @@ def lookout(args):
     # Matrix with scores for all outliers on all feature-pair plots (row = plot, column = outlier)
     scores = None
     # Isolation Forest instance used to train and score outliers
-    if args.dataset == 0:
-        classifier = IF(max_samples=64, contamination=0.02) #for HTRU dataset
-    else:
-        classifier = IF(max_samples=64, contamination=0.1) #for CTG dataset
+    classifier = IF()
     for feature_pair in feature_pairs:
         # Model for current feature pair
         classifier.fit(full_df[list(feature_pair)])
@@ -142,7 +139,7 @@ def lookout(args):
 
     print("Final selection: {}".format(S))
     print("Execution time: {0:.2f}s".format(time))
-    print("Incrimination: {}".format(f(S)/f(all_features)))
+    print("Incrimination: {}".format(get_incrimination(S, feature_pairs, scores)))
 
     # Actual Plotting
     # Tuple of (best_outliers, other_outliers) for each feature pair; IDS ONLY! MUST RETRIEVE FROM OUTLIER DATAFRAME
@@ -156,7 +153,7 @@ def lookout(args):
         feature_pair_plot_scores = scores[feature_pair_row_idx]
         # Returns boolean array checking if float values are close enough to be considered true
         score_comparison = np.isclose(
-            feature_pair_plot_scores, outliers_max_plot_scores, atol=1e-6)
+            feature_pair_plot_scores, outliers_max_plot_scores)
         # IDs (in outliers dataframe) of outliers best explained by this feature pair
         best_outliers_ids = list(map(lambda x: x[0], filter(
             lambda y: y[1], enumerate(score_comparison.tolist()))))
