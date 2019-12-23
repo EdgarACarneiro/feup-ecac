@@ -85,9 +85,9 @@ def lookout(args):
     time = -timer()
     # Load dataset
     if args.dataset == 0:
-        full_df = pd.read_csv("HTRU_2_filtered.csv")
-    else:
         full_df = pd.read_csv("HTRU_2.csv")
+    else:
+        full_df = pd.read_csv("HTRU_2_filtered.csv")
 
     # Isolate outliers and inliers
     # Points to later be drawn in BLACK
@@ -180,7 +180,7 @@ def lookout(args):
         best_outliers = outlier_df.iloc[outliers_p[0]]
         best_outliers = best_outliers[list(feature_pair)]
         best_outliers['class'] = 'best'
-        best_outliers['point_size'] = 45
+        best_outliers['point_size'] = 35
 
         # Joining all the dataframes
         plot_df = plot_df.append(best_outliers)
