@@ -1,7 +1,16 @@
 # feup-ecac
 Project developed for 'Knowledge Extraction and Machine Learning', a fifth year subject @FEUP. Made in collaboration with [@cyrilico](https://github.com/cyrilico).
 
-A Summary of the theoretical material is available [here](https://github.com/EdgarACarneiro/feup-ecac/blob/master/Summary.md). 
+A Summary of the theoretical material is available [here](https://github.com/EdgarACarneiro/feup-ecac/blob/master/Summary.md).
+
+Folder `/research-project` contains materials that were necessary to the develop the ECAC research project (2nd project).
+
+## Project Grade
+
+| Component | Grade |
+|:-|:-|
+| __Project__ | 20 |
+| __Classification__ | 17 | 
 
 ## Usage
 
@@ -43,7 +52,7 @@ After running, you should expect your predictions in the file you indicated in t
 
 Final presentation slides available [here](https://github.com/EdgarACarneiro/feup-ecac/blob/master/docs/ECAC%20Presentation%20-%20T1%20G10.pdf).
 
-Final leaderboards available [here](https://www.kaggle.com/c/to-loan-or-not-to-loan-4/leaderboard) - placed :nine: .
+Final leaderboards available [here](https://www.kaggle.com/c/to-loan-or-not-to-loan-4/leaderboard) - placed :nine:.
 
 ## Submission history
 
